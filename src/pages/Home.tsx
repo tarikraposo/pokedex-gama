@@ -1,14 +1,14 @@
-import CardPokemon, {CardPokemonProps} from "../components/PokeList";
+import CardPokemon, {CardPokemonProps} from "../components/CardPokemon";
 import { NavBar } from "../components/NavBar";
-import "./Home.css";
 import { useEffect, useState } from "react";
 import api from "../services/api";
+import { Title , List, Input} from "./Home.styles";
 
 export const Home = () => {
 
     const [isLoading, setIsLoading] = useState (true);
     const [pokemonList , setPokemonList] = useState<CardPokemonProps[]>([]);
-
+    const [search, setSearch] = useState('');
     
     
     async function getPokemonData () {
@@ -41,16 +41,19 @@ export const Home = () => {
     return (
         <>
             <NavBar/>
-            <h1 className="title">Econtre todos os pokémons em um só lugar</h1>
+            <Title>Econtre todos os pokémons em um só lugar </Title>
 
-            <div className="list">
-                {pokemonList.map((pokemon, index) =>{
+            <Input type="text" placeholder="Buscar pelo Nome ou ID" value={search} onChange={(e) => setSearch(e.target.value)}/>
+
+            <List>
+                {pokemonList.filter((pokemon) => pokemon.name.includes(search) || String(pokemon.id) === search).map
+                ((pokemon, index) =>{
                     return (
                         <CardPokemon key = {index} id = {pokemon.id} name = {pokemon.name} types = {pokemon.types}/>
                     ) ;
             
                     })};
-            </div>
+            </List>
         
         </>
     );
