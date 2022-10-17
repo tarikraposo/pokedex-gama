@@ -14,7 +14,7 @@ export const Home = () => {
             <div className="list">
                 {pokemons.map((pokemon, index) =>{
                     return (
-                        <CardPokemon key = {index} id = {pokemon.id} name = {pokemon.name}/>
+                        <CardPokemon key = {index} id = {pokemon.id} name = {pokemon.name} types = {pokemon.types}/>
                     ) ;
             
                     })};

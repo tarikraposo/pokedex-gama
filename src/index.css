@@ -12,7 +12,6 @@ body {
 
 .container {
   margin: 0 auto;
-  background-color: rgb(203, 226, 255);
   max-width: 1024px;
   min-height: 100vh;
   padding: 2rem;
